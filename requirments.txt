@@ -1,0 +1,6 @@
+pyTelegramBotAPI==4.15.4
+requests
+urllib3
+certifi
+charset-normalizer
+idna
